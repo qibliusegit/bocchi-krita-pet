@@ -12,7 +12,7 @@ song_files = list(song_dir.rglob('*.mp3'))
 
 class bocchi(DockWidget):
     def __init__(self):
-        super().__init__()
+        super.__init__()
         self.setWindowTitle("bocchi_mp3")
         self.img = QPixmap(str(Path(__file__).parent / "images" / "bocchi1nobg.png"))
 
