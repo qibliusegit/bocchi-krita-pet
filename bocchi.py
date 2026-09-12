@@ -6,30 +6,39 @@ import vlc as v
 import random
 from pathlib import Path
 
+p = ""
 song_dir = Path(__file__).parent / 'songs'
 song_files = list(song_dir.rglob('*.mp3'))
 
-class bocchi(QWidget):
-    def __init__(self, parent=None):
-        super.__init__(parent)
-
-        self.sprite = QLabel()
+class bocchi(DockWidget):
+    def __init__(self):
+        super.__init__()
+        self.setWindowTitle("bocchi_mp3")
         self.setdimensions()
-        self.sprite.mousePressEvent = self.clicked
+
+        self.labelbutton = QLabel()
+        self.labelbutton.setPixmap(self.img)
+        self.labelbutton.mousePressEvent = self.clicked
 
         self.layout = QVBoxLayout()
-        self.layout.setContentsMargins(0,0,0,0)
         self.layout.addWidget(self.labelbutton)
+        
         self.setLayout(self.layout)
         self.setFixedSize(self.width, self.height)
         
     def setdimensions(self):
         self.img = QPixmap(str(Path(__file__).parent / "images" / "bocchi1nobg.png"))
         self.img.start()
-        self.width = round(self.img.frameRect().width()/10)
-        self.height = round(self.img.frameRect().height()/10)
+        self.width = round(self.img.width()/10)
+        self.height = round(self.img.height()/10)
 
     def clicked(self, event):
+        global p
+        if p == "":
+            if event.button() == Qt.MouseButton.LeftButton:
+                file = random.choice(song_files)
+                p = v.MediaPlayer(file)
+                p.play()
         if event.button() == Qt.MouseButton.LeftButton:
             p.stop()
             file = random.choice(song_files)
@@ -38,7 +47,7 @@ class bocchi(QWidget):
         elif event.button() == Qt.MouseButton.RightButton:
             p.stop()
     
-    for docker in Krita.instance().dockers():
-        if(docker.objectName() == 'bocchi'):
-           docker.setVisible(docker.isVisible())
+for docker in Krita.instance().dockers():
+    if(docker.objectName() == 'bocchi'):
+        docker.setVisible(docker.isVisible())
         
