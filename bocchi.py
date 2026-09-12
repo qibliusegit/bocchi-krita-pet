@@ -33,7 +33,6 @@ class bocchi(DockWidget):
         global p
         self.img = QPixmap(str(Path(__file__).parent / "images" / "bocchi2nobg.png"))
         self.labelbutton.setPixmap(self.img)
-        
         if p == "":
             if event.button() == Qt.MouseButton.LeftButton:
                 file = random.choice(song_files)
@@ -50,10 +49,11 @@ class bocchi(DockWidget):
         elif event.button() == Qt.MouseButton.RightButton:
             p.stop()
         
-    timer = QTimer()
-    timer.start(1000)
-    self.img = QPixmap(str(Path(__file__).parent / "images" / "bocchi1nobg.png"))
-    self.labelbutton.setPixmap(self.img)
+        self.img = QPixmap(str(Path(__file__).parent / "images" / "bocchi1nobg.png"))
+        self.labelbutton.setPixmap(self.img)
+
+        
+        
 
     def canvasChanged(self, canvas):
         pass
