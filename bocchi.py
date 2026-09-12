@@ -46,6 +46,12 @@ class bocchi(DockWidget):
             p.play()
         elif event.button() == Qt.MouseButton.RightButton:
             p.stop()
+
+    def canvasChanged(self, canvas):
+        pass
+
+
+Krita.instance().addDockWidgetFactory(DockWidgetFactory("bocchimp3", DockWidgetFactoryBase.DockPosition.DockRight, bocchi))
     
 for docker in Krita.instance().dockers():
     if(docker.objectName() == 'bocchi'):
