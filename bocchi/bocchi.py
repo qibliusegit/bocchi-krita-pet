@@ -12,7 +12,7 @@ song_files = list(song_dir.rglob('*.mp3'))
 
 class bocchi(DockWidget):
     def __init__(self):
-        super.__init__()
+        super().__init__()
         self.setWindowTitle("bocchi_mp3")
         self.img = QPixmap(str(Path(__file__).parent / "images" / "bocchi1nobg.png"))
 
@@ -24,15 +24,11 @@ class bocchi(DockWidget):
         self.layout.addWidget(self.labelbutton)
         
        
-        self.setFixedSize(self.width, self.height)
-
-        self.rootwidget = QWidget(self)
-        self.rootwidget.setLayout(self.layout)
-        self.rootwidget.setdimensions()
         
-    def setdimensions(self):
-        self.rootwidget.width = round(self.img.width()/10)
-        self.rootwidget.height = round(self.img.height()/10)
+        self.rootwidget = QWidget(self)
+        self.rootwidget.setFixedSize(113, 200)
+        self.rootwidget.setLayout(self.layout)
+        self.setWidget(self.rootwidget)
 
     def clicked(self, event):
         global p
