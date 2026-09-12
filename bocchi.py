@@ -14,7 +14,6 @@ class bocchi(DockWidget):
     def __init__(self):
         super.__init__()
         self.setWindowTitle("bocchi_mp3")
-        self.setdimensions()
 
         self.labelbutton = QLabel()
         self.labelbutton.setPixmap(self.img)
@@ -23,12 +22,15 @@ class bocchi(DockWidget):
         self.layout = QVBoxLayout()
         self.layout.addWidget(self.labelbutton)
         
-        self.setLayout(self.layout)
+       
         self.setFixedSize(self.width, self.height)
+
+        self.rootwidget = QWidget(self)
+        self.rootwidget.setLayout(self.layout)
+        self.rootwidget.setdimensions()
         
     def setdimensions(self):
         self.img = QPixmap(str(Path(__file__).parent / "images" / "bocchi1nobg.png"))
-        self.img.start()
         self.width = round(self.img.width()/10)
         self.height = round(self.img.height()/10)
 
