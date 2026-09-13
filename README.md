@@ -1,6 +1,8 @@
 # Bocchi the Desktop Pet! #
 
 tl;dr bocchi tsuchinoko that you can click
+
+
 <img width="249" height="183" alt="image" src="https://github.com/user-attachments/assets/a7bb0779-02a5-4c9b-8c6d-a512e37f9aed" />
 _what bocchi looks like normally_
 
