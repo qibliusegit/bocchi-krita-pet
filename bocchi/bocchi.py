@@ -7,7 +7,8 @@ import random
 from pathlib import Path
 
 p = ""
-song_dir = Path(__file__).parent / 'songs'
+playing = False
+song_dir = Path("/home/qibli/Music/music for other projects")
 song_files = list(song_dir.rglob('*.mp3'))
 
 class bocchi(DockWidget):
@@ -31,6 +32,7 @@ class bocchi(DockWidget):
 
     def clicked(self, event):
         global p
+        global playing
         self.img = QPixmap(str(Path(__file__).parent / "images" / "bocchi2nobg.png"))
         self.labelbutton.setPixmap(self.img)
         if p == "":
@@ -38,19 +40,34 @@ class bocchi(DockWidget):
                 file = random.choice(song_files)
                 p = v.MediaPlayer(file)
                 p.play()
+                playing = True
             elif event.button() == Qt.MouseButton.RightButton:
                 print("hi")
-        
         if event.button() == Qt.MouseButton.LeftButton:
             p.stop()
             file = random.choice(song_files)
             p = v.MediaPlayer(file)
             p.play()
+            playing = True
         elif event.button() == Qt.MouseButton.RightButton:
-            p.stop()
+            if playing:
+                p.pause()
+                playing = False
+            else:
+                p.play()
+                playing = True
         
+        self.timer = QTimer()
+        self.timer.timeout.connect(self.switch)
+        self.timer.start(500)
+        
+    def switch(self):
         self.img = QPixmap(str(Path(__file__).parent / "images" / "bocchi1nobg.png"))
+        self.labelbutton.setPixmap(self.img)
+        self.timer.stop()
 
+        
+        
         
         
 
