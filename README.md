@@ -27,7 +27,7 @@ Future plans include adding more characters that you can select from, and also p
 This project was made for Hack Club's [Wrangler](wrangler.hackclub.com).
 
 # HOW TO INSTALL THE PLUGIN #
-1. Download the bocchi.zip file from this repository
+1. Download the bocchi.zip file from this repository and install python-vlc via pip if you don't already have it
 2. Change `song_dir = Path("change to your file path!") ` to have your file path in it
 3. Open Krita, click on tools, then scripts, then import python plugin from file
 4. Click on gambling.zip
