@@ -1,8 +1,0 @@
-[Desktop Entry]
-Type=Service
-ServiceTypes=Krita/PythonPlugin
-X-KDE-Library=dockertest
-X-Python-2-Compatible=false
-X-Krita-Manual=myPluginManual.html
-Name=dockertest
-Comment=testing docker :0

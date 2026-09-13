@@ -6,10 +6,10 @@ import vlc as v
 import random
 from pathlib import Path
 
-p = ""
-playing = False
-song_dir = Path("/home/qibli/Music/music for other projects")
-song_files = list(song_dir.rglob('*.mp3'))
+p = "" # holds song name
+playing = False # checks if song is playing
+song_dir = Path("change to your file path!") 
+song_files = list(song_dir.rglob('*.mp3')) # finds specifically mp3 files in the file path you gave it
 
 class bocchi(DockWidget):
     def __init__(self):
@@ -33,23 +33,23 @@ class bocchi(DockWidget):
     def clicked(self, event):
         global p
         global playing
-        self.img = QPixmap(str(Path(__file__).parent / "images" / "bocchi2nobg.png"))
+        self.img = QPixmap(str(Path(__file__).parent / "images" / "bocchi2nobg.png")) # switches picture
         self.labelbutton.setPixmap(self.img)
         if p == "":
-            if event.button() == Qt.MouseButton.LeftButton:
+            if event.button() == Qt.MouseButton.LeftButton: # plays new track 
                 file = random.choice(song_files)
                 p = v.MediaPlayer(file)
                 p.play()
                 playing = True
-            elif event.button() == Qt.MouseButton.RightButton:
+            elif event.button() == Qt.MouseButton.RightButton: # doesn't do anything, since there's not a song playing alr
                 print("hi")
-        if event.button() == Qt.MouseButton.LeftButton:
+        if event.button() == Qt.MouseButton.LeftButton: # plays new track 
             p.stop()
             file = random.choice(song_files)
             p = v.MediaPlayer(file)
             p.play()
             playing = True
-        elif event.button() == Qt.MouseButton.RightButton:
+        elif event.button() == Qt.MouseButton.RightButton: # plays/pauses current track if right clicked
             if playing:
                 p.pause()
                 playing = False
@@ -59,7 +59,7 @@ class bocchi(DockWidget):
         
         self.timer = QTimer()
         self.timer.timeout.connect(self.switch)
-        self.timer.start(500)
+        self.timer.start(500) # waits half a second before switching back to the original image
         
     def switch(self):
         self.img = QPixmap(str(Path(__file__).parent / "images" / "bocchi1nobg.png"))

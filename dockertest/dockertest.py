@@ -1,3 +1,5 @@
+# just a test file to see how dockers work
+
 from PyQt6.QtWidgets import *
 from krita import *
 
